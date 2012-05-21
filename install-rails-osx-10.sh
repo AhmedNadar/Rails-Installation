@@ -1,13 +1,31 @@
 set -e
 
 echo "Installs Homebrew for installing other software"
-# /usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
-/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)" \n
-brew update\n
+/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+brew update
 
-echo "install GIT, wget, ack, imagemagick and any other mighty software tools for daily use."
-brew install git ack wget redis memcached libmemcached colordiff imagemagick nginx sqlite libxml2 libxslt readline v8 sphinx geoip lzo
-
+#echo "install GIT, wget, ack, imagemagick and any other mighty software tools for daily use"
+#brew install git ack wget redis memcached libmemcached colordiff imagemagick nginx sqlite libxml2 libxslt readline v8 sphinx geoip lzo
+printf "Ensuring that git is installed...\n"
+  if command -v git
+  then
+    printf "Found git! Moving right along.\n"
+  else
+    printf "=> Installing Git (git command not found)"
+    if curl -s -L -B https://rvm.io/install/git -o gitinstall
+    then
+      chmod +x "$PWD/gitinstall"
+      sudo bash "$PWD/gitinstall"
+      if [[ -f gitinstall ]]
+      then
+        rm -f gitinstall
+      fi
+    else
+      printf "ERROR: There was an error while attempting to install git."
+      exit 1
+    fi
+  fi
+  
 echo "Installs RVM (Ruby Version Manager) for handling Ruby installation"
 curl -L get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
