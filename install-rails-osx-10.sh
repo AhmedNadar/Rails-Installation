@@ -10,7 +10,7 @@ source ~/.rvm/scripts/rvm
 
 echo "Install Ruby"
 rvm install 1.9.3-p194
-rvm use 1.9.3-p194 --defa
+rvm use 1.9.3-p194 --default
 
 gem install bundler --no-rdoc --no-ri
 gem install rails --no-rdoc --no-ri
@@ -18,7 +18,7 @@ gem install rails --no-rdoc --no-ri
 echo -e "\n- - - - - -\n"
 echo -e "Now we are going to print some information to check that everything is done:\n"
 
-echo -n "Should be brew 0.8 or higher: brew "
+echo -n "Should be brew 0.8 or higher: 	brew "
 brew -v
 echo -n "Should be sqlite 3.7.3 or higher: sqlite "
 sqlite3 --version
