@@ -1,12 +1,12 @@
 set -e
 
 echo "Installs Homebrew for installing other software"
-/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
-brew update
+# /usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)" \n
+brew update\n
 
-echo "Installing Git"
-/usr/bin/ruby -e "$(/usr/bin/curl curl -s -L -B https://rvm.io/install/git -o gitinstall)"
-brew update
+echo "install GIT, wget, ack, imagemagick and any other mighty software tools for daily use."
+brew install git ack wget redis memcached libmemcached colordiff imagemagick nginx sqlite libxml2 libxslt readline v8 sphinx geoip lzo
 
 echo "Installs RVM (Ruby Version Manager) for handling Ruby installation"
 curl -L get.rvm.io | bash -s stable
