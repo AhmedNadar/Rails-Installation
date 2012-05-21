@@ -35,10 +35,3 @@ don't match or errors are shown, something went wrong with the automated process
 and we will help you do the installation the manual way at the event.
 
 Congrats!"
-
-
-#echo "install GIT, wget, ack, imagemagick and any other mighty software tools for daily use"
-#brew install git ack wget redis memcached libmemcached colordiff imagemagick nginx sqlite libxml2 libxslt readline v8 sphinx geoip lzo
-
-# install bootstrap rails
-# https://raw.github.com/wayneeseguin/rvm/master/contrib/bootstrap_rails_environment
