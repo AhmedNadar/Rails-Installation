@@ -1,8 +1,29 @@
 set -e
 
-echo "Installs Homebrew for installing other software"
-/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
-brew update
+	printf "Installs Homebrew for installing other software...\n"
+		if /usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+			then
+			brew update
+			else
+			  if command -v git
+			  then
+			    printf "Found git! Moving right along.\n"
+			  else
+			    printf "=> Installing Git (git command not found)"
+			    if curl -s -L -B https://rvm.io/install/git -o gitinstall
+			    then
+			      chmod +x "$PWD/gitinstall"
+			      sudo bash "$PWD/gitinstall"
+			      if [[ -f gitinstall ]]
+			      then
+			        rm -f gitinstall
+			      fi
+			    else
+			      printf "ERROR: There was an error while attempting to install git."
+			      exit 1
+			    fi
+		fi
+	fi
 
 echo "Installs RVM (Ruby Version Manager) for handling Ruby installation"
 curl -kL get.rvm.io | bash -s stable
@@ -30,15 +51,8 @@ echo -n "Should be Rails 3.2.2 or higher: "
 rails -v
 echo -e "\n- - - - - -\n"
 
-echo "If the versions match, everything is installed correctly. If the versions
-don't match or errors are shown, something went wrong with the automated process
-and we will help you do the installation the manual way at the event.
+echo "If the versions match, everything is installed correctly.\n
+Rails development environment bootstrapped, please enjoy Rails!
+  ~Ahmed Nadar <ahmednadar@gmail.com>.
 
-Congrats!"
-
-
-#echo "install GIT, wget, ack, imagemagick and any other mighty software tools for daily use"
-#brew install git ack wget redis memcached libmemcached colordiff imagemagick nginx sqlite libxml2 libxslt readline v8 sphinx geoip lzo
-
-# install bootstrap rails
-# https://raw.github.com/wayneeseguin/rvm/master/contrib/bootstrap_rails_environment
+Happy coding :D"
